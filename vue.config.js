@@ -10,7 +10,9 @@ module.exports = {
   devServer: {
     proxy: {
       '/v1':{
-        target: 'http://localhost:8088',
+        target: 'http://localhost:8080',
+        // target: 'http://192.168.135.99:8080',
+
         changeOrigin: true,
         //重写路径
         pathRewrite:{

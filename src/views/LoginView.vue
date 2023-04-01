@@ -56,51 +56,27 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
 
-                      // var params = new URLSearchParams();
-                      // params.append('mobile', this.ruleForm.username);
-                      // params.append('password', this.ruleForm.password);
-                      //
-                      //   this.axios.post('/v1/login/do_login',this.params).then(res => {
-                      //       console.log(res)
-                      //       localStorage.setItem('user',  JSON.stringify(res.data) );
-                      //       this.$router.push('/');
-                      //   } )
-
-
-                      // var params = new URLSearchParams();
-                      // params.append('mobile', this.ruleForm.username);
-                      // params.append('password', this.ruleForm.password);
-                      //
-                      //
-                      //
-                      //
-                      // axios.post('/v1/login/do_login', params)
-                      //   .then(response => {
-                      //     console.log(response);
-                      //   })
-                      //   .catch(error => {
-                      //     console.error(error);
-                      //   });
-
-
-                      // var params = new URLSearchParams();
-                      // params.append('mobile', this.ruleForm.username);
-                      // params.append('password', this.ruleForm.password);
 
                         httpServer({
-                            url: '/v1/login/do_login',
+                            url: '/v1/user/login',
                             method: 'post',
                             data: {
-                              mobile: this.ruleForm.username,
+                              username: this.ruleForm.username,
                               password: this.ruleForm.password
                             },
                           isForm: true
                         }).then(res => {
+                            if (res.code===200){
+                              console.log(res)
+                              // localStorage.setItem('user', "123");
+                              console.log(JSON.stringify(res.data))
+                              localStorage.setItem('user_token',  JSON.stringify(res.data) );
+                              this.$router.push('/home');
+                            }else {
+                              //报错信息弹窗
+                              this.$message.error(res.msg);
+                            }
 
-                            console.log(res)
-                            // localStorage.setItem('user', "123");
-                            localStorage.setItem('user_token',  JSON.stringify(res.data) );
-                            this.$router.push('/home');
                         })
                     } else {
                         console.log('error submit!!');

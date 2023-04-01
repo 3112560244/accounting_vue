@@ -42,7 +42,31 @@
         <td colspan="3">{{ goods.stockCount }}</td>
       </tr>
     </table>
+
+
+    <!-- 弹窗模板 -->
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :close-on-click-modal="false"
+      :show-close="false"
+    >
+      <div style="text-align: center;">
+        <p>正在秒杀中，请稍候...</p>
+        <el-loading
+          style="margin-top: 20px;"
+          :fullscreen="false"
+          :text="'秒杀中...'"
+          :spinner="true"
+          :background="'rgba(0, 0, 0, 0.7)'"
+        ></el-loading>
+      </div>
+    </el-dialog>
   </div>
+
+
+
 </template>
 
 <script>
@@ -58,6 +82,7 @@ export default {
       seckillStatus: 0,
 
       goodsId: 0,
+      dialogVisible: false, // 控制弹窗的显示与隐藏
     };
   },
 
@@ -133,9 +158,13 @@ export default {
         isForm: true,
       }).then((res) => {
         console.log(res);
+
         if (res.code == 200) {
           console.log(res.data);
           this.$message.success("提交成功");
+
+          // 打开弹窗
+          this.dialogVisible = true;
 
           // 轮询查询秒杀结果
           this.getResult();
@@ -157,6 +186,8 @@ export default {
         if (res.code == 200) {
           console.log(res.data);
           if (res.data !== null ) {
+            // 关闭弹窗
+            this.dialogVisible = false;
             this.$message.success("秒杀成功");
           } else {
             setTimeout(() => {

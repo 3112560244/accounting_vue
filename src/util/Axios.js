@@ -20,18 +20,18 @@ const httpServer = (options) => {
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
       'Content-Type': 'application/json; charset=UTF-8',
-      'token':JSON.parse(localStorage.getItem('user_token'))?JSON.parse(localStorage.getItem('user_token')).token:''
+      'token':JSON.parse(localStorage.getItem('user_token'))?JSON.parse(localStorage.getItem('user_token')):''
     } :
         options.isForm!=null? {
 
       'X-Requested-With': 'XMLHttpRequest',
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      'token': JSON.parse(localStorage.getItem('user_token')) ? JSON.parse(localStorage.getItem('user_token')).token : ''
+      'token': JSON.parse(localStorage.getItem('user_token')) ? JSON.parse(localStorage.getItem('user_token')): ''
 
     }: {
           'X-Requested-With': 'XMLHttpRequest',
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': JSON.parse(localStorage.getItem('user_token')) ? JSON.parse(localStorage.getItem('user_token')).token : ''
+          'token': JSON.parse(localStorage.getItem('user_token')) ? JSON.parse(localStorage.getItem('user_token')) : ''
         }
 
   }
@@ -101,6 +101,7 @@ let handleApiResponseStatus = response => {
   if (response.code.toString() === '200') {
     return true
   } else {
+
     console.log((response.msg)?response.msg : '服务器异常',)
     return true
     // console.log((response.data.msg)?response.data.msg : '服务器异常',)
