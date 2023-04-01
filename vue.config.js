@@ -8,6 +8,7 @@ module.exports = {
   publicPath: './',
   productionSourceMap: false,
   devServer: {
+    historyApiFallback: true,
     proxy: {
       '/v1':{
         target: 'http://localhost:8080',
