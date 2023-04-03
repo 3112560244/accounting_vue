@@ -14,6 +14,8 @@ const routes = [
       {path: '/waitGoods',name:'waitGoods',component: () => import('../views/Goods/WaitGoods.vue')},
       {path: '/sellGoods',name:'sellGoods',component: () => import('../views/Goods/SellGoods.vue')},
       {path: '/adventGoods',name:'adventGoods',component: () => import('../views/Goods/AdventGoods.vue')},
+      {path: '/addGoods',name:'addGoods',component: () => import('../views/Goods/AddGoods.vue')},
+
 
 
       {path: '/about',name: 'about',component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')},
@@ -31,13 +33,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) =>{
-  console.log("to"+to.path)
-  console.log("from"+from.path)
-  let token = window.localStorage.getItem("user_token")?JSON.parse(localStorage.getItem("user_token")):null
-  console.log(token)
-  if (token == null && to.path !== '/login'){
-    next({path:'/login'})
-  }
+  // console.log("to"+to.path)
+  // console.log("from"+from.path)
+  // let token = window.localStorage.getItem("user_token")?JSON.parse(localStorage.getItem("user_token")):null
+  // console.log(token)
+  // if (token == null && to.path !== '/login'){
+  //   next({path:'/login'})
+  // }
   next()
 
 })

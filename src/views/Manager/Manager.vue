@@ -59,12 +59,12 @@ export default {
 
 <style>
 .fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: #f8f8f8;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*height: 60px;*/
+  /*background-color: #f8f8f8;*/
 }
 
 .scrollable-main {
